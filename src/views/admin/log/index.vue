@@ -1,5 +1,5 @@
 <!--
-  -    Copyright (c) 2018-2025, lengleng All rights reserved.
+  -    Copyright (c) 2018-2025, god All rights reserved.
   -
   - Redistribution and use in source and binary forms, with or without
   - modification, are permitted provided that the following conditions are met:
@@ -12,19 +12,41 @@
   - Neither the name of the pig4cloud.com developer nor the names of its
   - contributors may be used to endorse or promote products derived from
   - this software without specific prior written permission.
-  - Author: lengleng (wangiegie@gmail.com)
+  - Author: god (1830278686@qq.com)
   -->
 
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-select style="width: 200px;" class="filter-item" v-model="listQuery.type" filterable placeholder="请选择">
-        <el-option v-for="item in dicts" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
+      <el-select
+        style="width: 200px;"
+        class="filter-item"
+        v-model="listQuery.type"
+        filterable
+        placeholder="请选择"
+      >
+        <el-option v-for="item in dicts" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
-      <el-button class="filter-item" type="primary" size="mini" plain v-waves icon="search" @click="handleFilter">搜索</el-button>
+      <el-button
+        class="filter-item"
+        type="primary"
+        size="mini"
+        plain
+        v-waves
+        icon="search"
+        @click="handleFilter"
+      >搜索</el-button>
     </div>
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 99%">
+    <el-table
+      :key="tableKey"
+      :data="list"
+      v-loading="listLoading"
+      
+      border
+      fit
+      highlight-current-row
+      style="width: 99%"
+    >
       <el-table-column align="center" label="序号">
         <template slot-scope="scope">
           <span>{{ getSerialNumber(scope.$index) }}</span>
@@ -34,8 +56,16 @@
       <el-table-column align="center" label="类型">
         <template slot-scope="scope">
           <span>
-            <el-button type="success" size="mini" v-if="scope.row.type == 0">{{ scope.row.type | typeFilter }}</el-button>
-            <el-button type="danger" size="mini" v-if="scope.row.type ==9">{{ scope.row.type | typeFilter }}</el-button>
+            <el-button
+              type="success"
+              size="mini"
+              v-if="scope.row.type == 0"
+            >{{ scope.row.type | typeFilter }}</el-button>
+            <el-button
+              type="danger"
+              size="mini"
+              v-if="scope.row.type ==9"
+            >{{ scope.row.type | typeFilter }}</el-button>
           </span>
         </template>
       </el-table-column>
@@ -78,14 +108,26 @@
 
       <el-table-column align="center" label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" plain type="danger" v-if="sys_log_del" @click="handleDelete(scope.row)">删除
-          </el-button>
+          <el-button
+            size="mini"
+            plain
+            type="danger"
+            v-if="sys_log_del"
+            @click="handleDelete(scope.row)"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page.sync="listQuery.page"
+        :page-sizes="[10,20,30, 50]"
+        :page-size="listQuery.limit"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -177,6 +219,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 </style>
 

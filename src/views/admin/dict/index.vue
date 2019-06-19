@@ -1,5 +1,5 @@
 <!--
-  -    Copyright (c) 2018-2025, lengleng All rights reserved.
+  -    Copyright (c) 2018-2025, god All rights reserved.
   -
   - Redistribution and use in source and binary forms, with or without
   - modification, are permitted provided that the following conditions are met:
@@ -12,7 +12,7 @@
   - Neither the name of the pig4cloud.com developer nor the names of its
   - contributors may be used to endorse or promote products derived from
   - this software without specific prior written permission.
-  - Author: lengleng (wangiegie@gmail.com)
+  - Author: god (1830278686@qq.com)
   -->
 
 <template>
@@ -24,7 +24,7 @@
       <el-button v-if="sys_dict_add" class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" size="mini" plain icon="edit">添加
       </el-button>
     </div>
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 99%">
+    <el-table :key='tableKey' :data="list" v-loading="listLoading"  border fit highlight-current-row style="width: 99%">
       <el-table-column align="center" label="编号">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -104,8 +104,8 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel('form')">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
-        <el-button v-else type="primary" @click="update('form')">修 改</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" size="mini" plain v-waves @click="create('form')">确 定</el-button>
+        <el-button v-else type="primary" size="mini" plain v-waves @click="update('form')">修 改</el-button>
       </div>
     </el-dialog>
   </div>
