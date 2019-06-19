@@ -83,11 +83,11 @@
             </el-form-item>
             <el-form-item v-if="formStatus == 'update'">
               <el-button type="primary" size="mini" plain @click="update">更新</el-button>
-              <el-button @click="onCancel">取消</el-button>
+              <el-button size="mini" plain @click="onCancel">取消</el-button>
             </el-form-item>
             <el-form-item v-if="formStatus == 'create'">
               <el-button type="primary" size="mini" plain @click="create">保存</el-button>
-              <el-button @click="onCancel">取消</el-button>
+              <el-button size="mini" plain @click="onCancel">取消</el-button>
             </el-form-item>
           </el-form>
         </el-card>

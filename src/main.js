@@ -37,7 +37,7 @@ import {
 } from '@/config/env'
 import * as filters from './filters' // 全局filter
 import './styles/common.scss'
-
+import './assets/iconfont.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueMoment)

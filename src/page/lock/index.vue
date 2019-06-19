@@ -63,7 +63,7 @@ export default {
       })
     },
     handleLogin() {
-      if (this.passwd != this.lockPasswd) {
+      if (this.passwd !== this.lockPasswd) {
         this.passwd = ''
         this.$message({
           message: '解锁密码错误,请重新输入',
@@ -91,7 +91,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
   position: relative;
 }
 .lock-container::before {

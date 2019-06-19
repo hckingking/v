@@ -21,7 +21,6 @@
       <sidebar class="left"></sidebar>
       <div class="right">
         <div class="nav">
-         
           <tags></tags>
         </div>
         <div class="main">
@@ -44,7 +43,6 @@ import tags from './tags'
 import sidebar from './sidebar/'
 export default {
   components: {
-
     tags,
     sidebar
   },
@@ -68,11 +66,12 @@ export default {
   background: #fff;
   overflow: hidden;
   .left {
-    width: 230px;
+    width: 12%;
     overflow-y: auto;
+    border: 1px solid #eee;
   }
   .right {
-    padding-top: 57px;
+    padding-top: 10px;
     position: relative;
     height: 100%;
     box-sizing: border-box;
@@ -81,7 +80,7 @@ export default {
   }
   .main {
     height: 100%;
-    background: #f1f4f5;
+    background: #fff;
     padding: 15px;
     box-sizing: border-box;
     overflow-y: scroll;

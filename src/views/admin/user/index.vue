@@ -18,14 +18,44 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名" v-model="listQuery.username">
-      </el-input>
-      <el-button class="filter-item" type="primary" size="mini" plain v-waves icon="search" @click="handleFilter">搜索</el-button>
-      <el-button size="mini" plain v-if="sys_user_add" class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+      <el-input
+        @keyup.enter.native="handleFilter"
+        size="mini"
+        style="width: 200px;"
+        class="filter-item"
+        placeholder="用户名"
+        v-model="listQuery.username"
+      ></el-input>
+      <el-button
+        class="filter-item"
+        type="primary"
+        size="mini"
+        plain
+        v-waves
+        icon="search"
+        @click="handleFilter"
+      >搜索</el-button>
+      <el-button
+        size="mini"
+        plain
+        v-if="sys_user_add"
+        class="filter-item"
+        style="margin-left: 10px;"
+        @click="handleCreate"
+        type="primary"
+        icon="edit"
+      >添加</el-button>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" border fit highlight-current-row style="width: 99%">
-
+    <el-table
+      :key="tableKey"
+      :data="list"
+      v-loading="listLoading"
+      border
+      fit
+      highlight-current-row
+      style="width: 99%"
+    >
       <el-table-column align="center" label="序号">
         <template slot-scope="scope">
           <span>{{scope.row.userId}}</span>
@@ -35,7 +65,13 @@
       <el-table-column align="center" label="用户名">
         <template slot-scope="scope">
           <span>
-            <img v-if="scope.row.avatar" class="user-avatar" style="width: 20px; height: 20px; border-radius: 50%;" :src="scope.row.avatar+'?imageView2/1/w/20/h/20'"> {{scope.row.username}}
+            <img
+              v-if="scope.row.avatar"
+              class="user-avatar"
+              style="width: 20px; height: 20px; border-radius: 50%;"
+              :src="scope.row.avatar+'?imageView2/1/w/20/h/20'"
+            >
+            {{scope.row.username}}
           </span>
         </template>
       </el-table-column>
@@ -48,13 +84,13 @@
 
       <el-table-column align="center" label="所属部门" show-overflow-tooltip>
         <template slot-scope="scope">
-          <span>{{scope.row.deptName}} </span>
+          <span>{{scope.row.deptName}}</span>
         </template>
       </el-table-column>
 
       <el-table-column align="center" label="角色">
         <template slot-scope="scope">
-          <span v-for="role in scope.row.roleList" :key="role">{{role.roleDesc}} </span>
+          <span v-for="role in scope.row.roleList" :key="role">{{role.roleDesc}}</span>
         </template>
       </el-table-column>
 
@@ -66,29 +102,55 @@
 
       <el-table-column align="center" class-name="status-col" label="状态">
         <template slot-scope="scope">
-          <el-tag>{{scope.row.delFlag | statusFilter}}</el-tag>
+          <el-tag size="mini">{{scope.row.delFlag | statusFilter}}</el-tag>
         </template>
       </el-table-column>
 
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button v-if="sys_user_upd" size="small" type="success" @click="handleUpdate(scope.row)">编辑
-          </el-button>
-          <el-button v-if="sys_user_del" size="small" type="danger" @click="deletes(scope.row)">删除
-          </el-button>
+          <el-button
+            v-if="sys_user_upd"
+            size="mini"
+            plain v-waves
+            type="success"
+            @click="handleUpdate(scope.row)"
+          >编辑</el-button>
+          <el-button
+            v-if="sys_user_del"
+            size="mini"
+            plain v-waves
+            type="danger"
+            @click="deletes(scope.row)"
+          >删除</el-button>
         </template>
       </el-table-column>
-
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page.sync="listQuery.page"
+        :page-sizes="[10,20,30, 50]"
+        :page-size="listQuery.limit"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </div>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogDeptVisible">
-      <el-tree class="filter-tree" :data="treeDeptData" :default-checked-keys="checkedKeys" check-strictly node-key="id" highlight-current ref="deptTree" :props="defaultProps" @node-click="getNodeData" default-expand-all>
-      </el-tree>
+      <el-tree
+        class="filter-tree"
+        :data="treeDeptData"
+        :default-checked-keys="checkedKeys"
+        check-strictly
+        node-key="id"
+        highlight-current
+        ref="deptTree"
+        :props="defaultProps"
+        @node-click="getNodeData"
+        default-expand-all
+      ></el-tree>
     </el-dialog>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
@@ -97,18 +159,29 @@
           <el-input v-model="form.username" placeholder="请输用户名"></el-input>
         </el-form-item>
 
-        <el-form-item v-if="dialogStatus == 'create'" label="密码" placeholder="请输入密码" prop="newpassword1">
+        <el-form-item
+          v-if="dialogStatus == 'create'"
+          label="密码"
+          placeholder="请输入密码"
+          prop="newpassword1"
+        >
           <el-input type="password" v-model="form.newpassword1"></el-input>
         </el-form-item>
 
         <el-form-item label="所属部门" prop="deptName">
           <el-input v-model="form.deptName" placeholder="选择部门" @focus="handleDept()" readonly></el-input>
-          <input type="hidden" v-model="form.deptId" />
+          <input type="hidden" v-model="form.deptId">
         </el-form-item>
 
         <el-form-item label="角色" prop="role">
           <el-select class="filter-item" v-model="role" placeholder="请选择" multiple>
-            <el-option v-for="item in rolesOptions" :key="item.roleId" :label="item.roleDesc" :value="item.roleId" :disabled="isDisabled[item.delFlag]">
+            <el-option
+              v-for="item in rolesOptions"
+              :key="item.roleId"
+              :label="item.roleDesc"
+              :value="item.roleId"
+              :disabled="isDisabled[item.delFlag]"
+            >
               <span style="float: left">{{ item.roleDesc }}</span>
               <span style="float: right; color: #8492a6; font-size: 13px">{{ item.roleCode }}</span>
             </el-option>
@@ -121,14 +194,19 @@
 
         <el-form-item label="状态" v-if="dialogStatus == 'update' && sys_user_del " prop="delFlag">
           <el-select class="filter-item" v-model="form.delFlag" placeholder="请选择">
-            <el-option v-for="item in statusOptions" :key="item" :label="item | statusFilter" :value="item"> </el-option>
+            <el-option
+              v-for="item in statusOptions"
+              :key="item"
+              :label="item | statusFilter"
+              :value="item"
+            ></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel('form')">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
-        <el-button v-else type="primary" @click="update('form')">修 改</el-button>
+        <el-button size="mini" plain @click="cancel('form')">取 消</el-button>
+        <el-button size="mini" plain v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
+        <el-button size="mini" plain v-else type="primary" @click="update('form')">修 改</el-button>
       </div>
     </el-dialog>
   </div>

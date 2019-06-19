@@ -19,35 +19,59 @@
   <div class="pull-chheight wel-contailer">
     <div class="banner-text">
       <span align="center">
-     
+        <el-collapse v-model="activeNames">
+          <el-collapse-item title="项目官网" name="1">
+            <div>Spring Cloud 最完整运用</div>
+            <div>深度定制兼容 1.0 、 2.0</div>
+            <div>覆盖常见的业务使用场景</div>
+            <div>
+              <i class="god god-king"></i>
+
+              <i class="god god-QQ"></i>
+
+              <i class="god god-icon-test"></i>
+              <i class="god god-changyonglogo40"></i>
+              <i class="god god-taobao"></i>
+              <i class="god god-xinlang"></i>
+
+              <i class="god god-baidu"></i>
+
+              <i class="god god-jingdong"></i>
+
+              <i class="god god-iconziti48"></i>
+              <i class="god god-WEBANK"></i>
+              <i class="god god-weixin"></i>
+              <i class="god god-zhifubao"></i>
+              <i class="god god-douyin"></i>
+              <i class="god god-dingding"></i>
+              <i class="god god-huawei"></i>
+
+              <i class="god god-yonghu"></i>
+              <i class="god god-china"></i>
+
+              <i class="god god-ziyuan"></i>
+            </div>
+          </el-collapse-item>
+          <el-collapse-item title="开发文档" name="2">
+            <div>微服务开发平台pig 的开发文档</div>
+            <div>实现细节、监控落地、生产部署文档</div>
+          </el-collapse-item>
+          <el-collapse-item title="配套视频" name="3">
+            <div>源码部署细节</div>
+            <div>OAuth2 源码讲解</div>
+            <div>监控pinpoint 使用</div>
+          </el-collapse-item>
+          <el-collapse-item title="最新版本" name="4">
+            <div>基于Spring Cloud Gateway</div>
+            <div>基于Spring Cloud Finchley.SR1</div>
+            <div>基于Spring Boot 2.0.4.RELEASE</div>
+            <div>基于开源LCN 分布式事务解决方案深度定制</div>
+            <div>
+              <span :class="['actor',{typeing:isText}]">{{text}}</span>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </span>
-      <span>
-          <el-collapse v-model="activeNames">
-            <el-collapse-item title="项目官网" name="1">
-                <div>Spring Cloud 最完整运用 </div>
-                <div>深度定制兼容 1.0 、 2.0</div>
-                <div>覆盖常见的业务使用场景</div>
-            </el-collapse-item>
-            <el-collapse-item title="开发文档" name="2">
-                <div>微服务开发平台pig 的开发文档</div>
-                <div>实现细节、监控落地、生产部署文档</div>
-            </el-collapse-item>
-            <el-collapse-item title="配套视频" name="3">
-                <div>源码部署细节</div>
-                <div>OAuth2 源码讲解</div>
-                <div>监控pinpoint 使用</div>
-            </el-collapse-item>
-            <el-collapse-item title="最新版本" name="4">
-              <div>基于Spring Cloud Gateway</div>
-              <div>基于Spring Cloud Finchley.SR1</div>
-              <div>基于Spring Boot 2.0.4.RELEASE</div>
-              <div>基于开源LCN 分布式事务解决方案深度定制</div>
-            </el-collapse-item>
-          </el-collapse>
-        </span>
-      <span>
-        </span><br>
-      <span :class="['actor',{typeing:isText}]">{{text}}</span>
     </div>
   </div>
 </template>
@@ -157,7 +181,7 @@ export default {
 }
 
 .actor:after {
-  content: "";
+  content: '';
   width: 3px;
   height: 25px;
   vertical-align: -5px;

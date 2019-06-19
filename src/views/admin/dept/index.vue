@@ -20,8 +20,8 @@
     <div class="filter-container">
       <el-button-group>
         <el-button type="primary" size="mini" plain v-if="deptManager_btn_add" icon="plus" @click="handlerAdd">添加</el-button>
-        <el-button type="primary" size="mini" plain v-if="deptManager_btn_edit" icon="edit" @click="handlerEdit">编辑</el-button>
-        <el-button type="primary" size="mini" plain v-if="deptManager_btn_del" icon="delete" @click="handleDelete">删除</el-button>
+        <el-button type="warning" size="mini" plain v-if="deptManager_btn_edit" icon="edit" @click="handlerEdit">编辑</el-button>
+        <el-button type="danger" size="mini" plain v-if="deptManager_btn_del" icon="delete" @click="handleDelete">删除</el-button>
       </el-button-group>
     </div>
 
@@ -55,12 +55,12 @@
               <el-input v-model="form.orderNum" :disabled="formEdit" placeholder="请输入排序"></el-input>
             </el-form-item>
             <el-form-item v-if="formStatus == 'update'">
-              <el-button type="primary" @click="update">更新</el-button>
-              <el-button @click="onCancel">取消</el-button>
+              <el-button type="primary" size="mini" plain @click="update">更新</el-button>
+              <el-button size="mini" plain @click="onCancel">取消</el-button>
             </el-form-item>
             <el-form-item v-if="formStatus == 'create'">
-              <el-button type="primary" @click="create">保存</el-button>
-              <el-button @click="onCancel">取消</el-button>
+              <el-button size="mini" plain type="primary" @click="create">保存</el-button>
+              <el-button size="mini" plain @click="onCancel">取消</el-button>
             </el-form-item>
           </el-form>
         </el-card>

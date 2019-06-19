@@ -18,8 +18,11 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
+      <el-row>
+        <el-col :span="5" >
       <el-select
-        style="width: 200px;"
+        size="mini"
+        style="width: 100px;"
         class="filter-item"
         v-model="listQuery.type"
         filterable
@@ -27,6 +30,8 @@
       >
         <el-option v-for="item in dicts" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
+      </el-col>
+       <el-col :span="2" :offset="1">
       <el-button
         class="filter-item"
         type="primary"
@@ -36,12 +41,14 @@
         icon="search"
         @click="handleFilter"
       >搜索</el-button>
+      </el-col>
+      </el-row>
     </div>
+
     <el-table
       :key="tableKey"
       :data="list"
       v-loading="listLoading"
-      
       border
       fit
       highlight-current-row

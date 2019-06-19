@@ -22,9 +22,9 @@
         <img class="top-userImg" :src="userInfo.avatar">
 
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
+            <div align="center" style="color:red;">
             {{userInfo.username}}
-          </el-dropdown-item>
+            </div>
 
           <el-dropdown-item @click.native="myselfIndex()" divided>云端首页</el-dropdown-item>
 

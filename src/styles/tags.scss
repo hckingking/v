@@ -38,7 +38,7 @@
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  border: 1px solid #eee;
   .tags-box {
     position: relative;
     box-sizing: border-box;
@@ -96,33 +96,10 @@
     right: 0;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 1px;
     height: 96%;
     box-sizing: border-box;
     background-color: #fff;
-    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.contextmenu {
-  margin: 0;
-  background: #fff;
-  top: 64px;
-  list-style-type: none;
-  padding: 5px 0;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
-  li {
-    margin: 0;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 15px;
-    cursor: pointer;
-    &:hover {
-      background: #eee;
-    }
+    
   }
 }
