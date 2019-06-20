@@ -16,12 +16,12 @@
   -->
 
 <template>
-  <iframe v-if="$route.query.src" :src='$route.query.src' class="iframe" ref="iframe"></iframe>
+  <iframe v-if="$route.query.src" :src="$route.query.src" class="iframe" ref="iframe"></iframe>
   <iframe v-else :src="urlPath" class="iframe" ref="iframe"></iframe>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 export default {
@@ -50,7 +50,7 @@ export default {
   components: {
     ...mapGetters(['tagList']),
     tagListNum: function() {
-      return this.tagList.length != 0
+      return this.tagList.length !== 0
     }
   },
   methods: {
@@ -75,11 +75,11 @@ export default {
       this.$route.query.src = this.$route.query.src
         ? this.$route.query.src.replace('$', '#')
         : ''
-      // 超时3s自动隐藏等待狂，加强用户体验
+      // 超时3s自动隐藏等待，加强用户体验
       let time = 3
       const timeFunc = setInterval(() => {
         time--
-        if (time == 0) {
+        if (time === 0) {
           this.hide()
           clearInterval(timeFunc)
         }

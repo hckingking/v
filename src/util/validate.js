@@ -123,12 +123,12 @@ export function cardid(code) {
       } else if (!city[code.substr(0, 2)]) {
         msg = '地址编码错误'
       } else {
-                // 18位身份证需要验证最后一位校验位
+        // 18位身份证需要验证最后一位校验位
         code = code.split('')
-                // ∑(ai×Wi)(mod 11)
-                // 加权因子
+        // ∑(ai×Wi)(mod 11)
+        // 加权因子
         var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
-                // 校验位
+        // 校验位
         var parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2, 'x']
         var sum = 0
         var ai = 0
@@ -163,7 +163,7 @@ export function isvalidatemobile(phone) {
   let result = true
   let msg = ''
   var isPhone = /^0\d{2,3}-?\d{7,8}$/
-    // 增加134 减少|1349[0-9]{7}，增加181,增加145，增加17[678]
+  // 增加134 减少|1349[0-9]{7}，增加181,增加145，增加17[678]
   var isMob = /^((\+?86)|(\(\+86\)))?(13[0123456789][0-9]{8}|15[012356789][0-9]{8}|18[012356789][0-9]{8}|14[57][0-9]{8}|17[3678][0-9]{8})$/
   if (!validatenull(phone)) {
     if (phone.length === 11) {

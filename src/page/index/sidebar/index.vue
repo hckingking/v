@@ -36,7 +36,7 @@
 <script>
 import { setUrlPath } from '@/util/util'
 import { mapGetters } from 'vuex'
-import top from '../top/index'
+import top from './top'
 import SidebarItem from './sidebarItem'
 import { validatenull } from '@/util/validate'
 import { initMenu } from '@/util/util'

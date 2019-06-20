@@ -15,7 +15,7 @@
  * Author: god (1830278686@qq.com)
  */
 
-const _import = require('./_import');
+const _import = require('./_import')
 import Layout from '@/page/index/'
 export default [{
   path: '/',

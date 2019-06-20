@@ -18,12 +18,28 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" size="mini" v-waves plain icon="edit" v-if="roleManager_btn_add">添加
-      </el-button>
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px;"
+        @click="handleCreate"
+        type="primary"
+        size="mini"
+        v-waves
+        plain
+        icon="edit"
+        v-if="roleManager_btn_add"
+      >添加</el-button>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading"  border fit highlight-current-row style="width: 99%">
-
+    <el-table
+      :key="tableKey"
+      :data="list"
+      v-loading="listLoading"
+      border
+      fit
+      highlight-current-row
+      style="width: 99%"
+    >
       <el-table-column align="center" label="序号">
         <template slot-scope="scope">
           <span>{{scope.row.roleId}}</span>
@@ -62,20 +78,44 @@
 
       <el-table-column label="操作" width="220">
         <template slot-scope="scope">
-          <el-button size="mini" v-waves plain type="success" v-if="roleManager_btn_edit" @click="handleUpdate(scope.row)">编辑
-          </el-button>
-          <el-button size="mini" v-waves plain type="danger" v-if="roleManager_btn_del" @click="handleDelete(scope.row)">删除
-          </el-button>
-          <el-button size="mini" v-waves type="info" plain @click="handlePermission(scope.row)" v-if="roleManager_btn_perm">权限
-          </el-button>
+          <el-button
+            size="mini"
+            v-waves
+            plain
+            type="success"
+            v-if="roleManager_btn_edit"
+            @click="handleUpdate(scope.row)"
+          >编辑</el-button>
+          <el-button
+            size="mini"
+            v-waves
+            plain
+            type="danger"
+            v-if="roleManager_btn_del"
+            @click="handleDelete(scope.row)"
+          >删除</el-button>
+          <el-button
+            size="mini"
+            v-waves
+            type="info"
+            plain
+            @click="handlePermission(scope.row)"
+            v-if="roleManager_btn_perm"
+          >权限</el-button>
         </template>
       </el-table-column>
-
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page.sync="listQuery.page"
+        :page-sizes="[10,20,30, 50]"
+        :page-size="listQuery.limit"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </div>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px">
@@ -95,21 +135,56 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel('form')">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" size="mini" plain v-waves @click="create('form')">确 定</el-button>
+        <el-button
+          v-if="dialogStatus=='create'"
+          type="primary"
+          size="mini"
+          plain
+          v-waves
+          @click="create('form')"
+        >确 定</el-button>
         <el-button v-else type="primary" size="mini" plain v-waves @click="update('form')">修 改</el-button>
       </div>
     </el-dialog>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogDeptVisible">
-      <el-tree class="filter-tree" :data="treeDeptData" :default-checked-keys="checkedKeys" check-strictly node-key="id" highlight-current ref="deptTree" @node-click="getNodeData" :props="defaultProps" :filter-node-method="filterNode" default-expand-all>
-      </el-tree>
+      <el-tree
+        class="filter-tree"
+        :data="treeDeptData"
+        :default-checked-keys="checkedKeys"
+        check-strictly
+        node-key="id"
+        highlight-current
+        ref="deptTree"
+        @node-click="getNodeData"
+        :props="defaultProps"
+        :filter-node-method="filterNode"
+        default-expand-all
+      ></el-tree>
     </el-dialog>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogPermissionVisible">
-      <el-tree class="filter-tree" :data="treeData" :default-checked-keys="checkedKeys" :check-strictly="false" node-key="id" highlight-current :props="defaultProps" show-checkbox ref="menuTree" :filter-node-method="filterNode" default-expand-all>
-      </el-tree>
+      <el-tree
+        class="filter-tree"
+        :data="treeData"
+        :default-checked-keys="checkedKeys"
+        :check-strictly="false"
+        node-key="id"
+        highlight-current
+        :props="defaultProps"
+        show-checkbox
+        ref="menuTree"
+        :filter-node-method="filterNode"
+        default-expand-all
+      ></el-tree>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" size="mini" plain v-waves @click="updatePermession(roleId, roleCode)">更 新</el-button>
+        <el-button
+          type="primary"
+          size="mini"
+          plain
+          v-waves
+          @click="updatePermession(roleId, roleCode)"
+        >更 新</el-button>
       </div>
     </el-dialog>
   </div>
@@ -269,7 +344,11 @@ export default {
         })
         .then(response => {
           this.treeData = response.data
-          this.checkedKeys = this.resolveAllLeafNodeId(this.treeData, this.checkedKeys, [])
+          this.checkedKeys = this.resolveAllLeafNodeId(
+            this.treeData,
+            this.checkedKeys,
+            []
+          )
           this.dialogStatus = 'permission'
           this.dialogPermissionVisible = true
           this.roleId = row.roleId
@@ -368,7 +447,11 @@ export default {
     },
     updatePermession(roleId, roleCode) {
       this.menuIds = ''
-      this.menuIds = this.$refs.menuTree.getCheckedKeys().join(',').concat(',').concat(this.$refs.menuTree.getHalfCheckedKeys().join(','))
+      this.menuIds = this.$refs.menuTree
+        .getCheckedKeys()
+        .join(',')
+        .concat(',')
+        .concat(this.$refs.menuTree.getHalfCheckedKeys().join(','))
       permissionUpd(roleId, this.menuIds).then(() => {
         this.dialogPermissionVisible = false
         fetchTree()

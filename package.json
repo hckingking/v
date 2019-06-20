@@ -1,15 +1,15 @@
 {
   "name": "god",
   "version": "1.1.5",
-  "description": "Vue+微服务实战",
+  "description": "spring cloud+Vue+elementUI 微服务实战",
   "author": "god <1830278686@qq.com>",
   "private": true,
   "scripts": {
     "god": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "build": "node build/build.js",
     "king": "node build/build.js",
     "ico": "node build/icon.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "build": "node build/build.js",
     "start": "npm run build:client && npm run build:server && cross-env NODE_ENV=production node server",
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.conf.js --progress --hide-modules",
     "temp": "node tools/app.js",

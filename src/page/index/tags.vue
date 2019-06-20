@@ -45,15 +45,7 @@
           <i class="el-icon-close tag-close" @click.stop="closeTag(item)" v-if="item.close"></i>
         </div>
       </div>
-      <el-dropdown class="tags-menu pull-right">
-        <el-button type="primary" size="mini" plain>
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="closeOthersTags()">关闭其他</el-dropdown-item>
-          <el-dropdown-item @click.native="closeAllTags">关闭全部</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+     
     </div>
   </div>
 </template>

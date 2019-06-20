@@ -66,7 +66,7 @@ export default {
   background: #fff;
   overflow: hidden;
   .left {
-    width: 12%;
+    width: 8%;
     overflow-y: auto;
     border: 1px solid #eee;
   }
@@ -81,7 +81,7 @@ export default {
   .main {
     height: 100%;
     background: #fff;
-    padding: 15px;
+    padding: 25px;
     box-sizing: border-box;
     overflow-y: scroll;
     .router {

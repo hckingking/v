@@ -43,10 +43,10 @@
         <el-card class="box-card">
           <el-form :label-position="labelPosition" label-width="80px" :model="form" ref="form">
             <el-form-item label="父级节点" prop="parentId">
-              <el-input v-model="form.parentId" :disabled="formEdit" placeholder="请输入父级节点"></el-input>
+              <el-input v-model="form.parentId" readonly placeholder="请输入父级节点"></el-input>
             </el-form-item>
             <el-form-item label="节点编号" prop="parentId" v-if="formEdit">
-              <el-input v-model="form.deptId" :disabled="formEdit" placeholder="节点编号"></el-input>
+              <el-input v-model="form.deptId" readonly placeholder="节点编号"></el-input>
             </el-form-item>
             <el-form-item label="部门名称" prop="name">
               <el-input v-model="form.name" :disabled="formEdit"  placeholder="请输入名称"></el-input>
