@@ -80,5 +80,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+i {
+  font-size: 26px;
+  color: rgba(31, 209, 150, 0.384);
+}
 </style>
 
