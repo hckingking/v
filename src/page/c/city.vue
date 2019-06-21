@@ -123,8 +123,8 @@
     </el-row>
 
     <el-dialog :label-position="labelPosition" width="55%" title="城市" :visible.sync="dialogForm">
-      <el-form ref="putform" :model="putform" label-width="100px" size="mini">
-        <el-form-item label="名称">
+      <el-form ref="putform" :model="putform" label-width="100px" size="mini" :rules="cityRules">
+        <el-form-item label="名称" prop="name">
           <el-input
             size="mini"
             :readonly="putform.red"
@@ -134,7 +134,7 @@
           ></el-input>
         </el-form-item>
 
-        <el-form-item label="日期">
+        <el-form-item label="日期" prop="day">
           <el-date-picker
             clearable
             :readonly="putform.red"
@@ -224,6 +224,20 @@ export default {
   },
   data() {
     return {
+      cityRules: {
+        name: [{
+          required: true,
+          message: '请输入名称',
+          trigger: 'blur'
+        }],
+        day: [
+          {
+            required: true,
+            message: '请选择日期',
+            trigger: 'change'
+          }
+        ]
+      },
       quillUpdateImg: false,
       enclosureList: [],
       activeName: false,
@@ -345,23 +359,29 @@ export default {
       })
     },
     postCity() {
-      postCityObj(this.putform).then(response => {
-        if (response.data.data) {
-          this.$message({
-            title: '成功',
-            message: '成功',
-            type: 'success',
-            duration: 2000
+      this.$refs['putform'].validate(valid => {
+        if (valid) {
+          postCityObj(this.putform).then(response => {
+            if (response.data.data) {
+              this.$message({
+                title: '成功',
+                message: '成功',
+                type: 'success',
+                duration: 2000
+              })
+            } else {
+              this.$message({
+                title: '失败',
+                message: '失败',
+                type: 'error',
+                duration: 2000
+              })
+            }
+            this.closeDialog()
           })
         } else {
-          this.$message({
-            title: '失败',
-            message: '失败',
-            type: 'error',
-            duration: 2000
-          })
+          return false
         }
-        this.closeDialog()
       })
     },
     beforeUpload() {

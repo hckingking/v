@@ -18,7 +18,9 @@
 <template>
   <div class="pull-chheight wel-contailer">
     <div class="banner-text">
+       
       <span align="center">
+        God
         <el-collapse v-model="activeNames">
           <el-collapse-item title="项目官网" name="1">
             <div>完善登录：账号密码模式、短信验证码模式、社交账号模式均整合Spring security oAuth</div>
