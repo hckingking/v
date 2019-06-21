@@ -1,7 +1,7 @@
 {
   "name": "god",
   "version": "1.1.5",
-  "description": "spring cloud+Vue+elementUI 微服务实战",
+  "description": "微服务实战",
   "author": "god <1830278686@qq.com>",
   "private": true,
   "scripts": {
@@ -45,7 +45,8 @@
     "vue-template-compiler": "2.5.2",
     "vuex": "^3.0.0",
     "vuex-router-sync": "^5.0.0",
-    "wget": "0.0.1"
+    "wget": "0.0.1",
+    "xlsx": "^0.12.13"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

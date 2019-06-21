@@ -24,7 +24,6 @@
       class="el-menu-vertical-demo"
       mode="vertical"
       :show-timeout="200"
-      text-color="red"
       active-text-color="#409eff"
       :collapse="isCollapse"
     >

@@ -16,7 +16,6 @@
  */
 
 .sidebar-container {
-  background: #fff;
   transition: width .6s;
   &.is-active {
     width: 64px !important;

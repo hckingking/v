@@ -27,7 +27,7 @@ export default [{
   redirect: '/wel/index',
   children: [{
     path: 'index',
-    name: '首页',
+    name: '云界首页',
     component: _import('wel')
   }]
 }, {

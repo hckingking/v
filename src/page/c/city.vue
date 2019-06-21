@@ -107,7 +107,7 @@
             </template>
           </el-table-column>
         </el-table>
-        <div v-show="!loading" align="right">
+        <div v-show="!loading" class="pagination-container">
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -122,12 +122,7 @@
       </el-col>
     </el-row>
 
-    <el-dialog
-      :label-position="labelPosition"
-      width="55%"
-      title="城市"
-      :visible.sync="dialogForm"
-    >
+    <el-dialog :label-position="labelPosition" width="55%" title="城市" :visible.sync="dialogForm">
       <el-form ref="putform" :model="putform" label-width="100px" size="mini">
         <el-form-item label="名称">
           <el-input

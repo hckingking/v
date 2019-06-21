@@ -22,25 +22,22 @@
         <img class="top-userImg" :src="userInfo.avatar">
 
         <el-dropdown-menu slot="dropdown">
-            <div align="center" style="color:red;">
-            {{userInfo.username}}
-            </div>
+          <div align="center" style="color:red;">{{userInfo.username}}</div>
 
-          <el-dropdown-item @click.native="myselfIndex()" divided>云端首页</el-dropdown-item>
+          <el-dropdown-item @click.native="myselfIndex()" divided>云界首页</el-dropdown-item>
 
           <el-dropdown-item @click.native="myself()" divided>个人资料</el-dropdown-item>
 
           <el-dropdown-item @click.native="showCollapse()" divided>菜单风格</el-dropdown-item>
 
           <el-dropdown-item @click.native="themeTo()" divided>界面主色</el-dropdown-item>
-
+          <el-dropdown-item @click.native="dayflase()" divided>云界评分</el-dropdown-item>
           <el-dropdown-item @click.native="handleLock()" divided>系统锁屏</el-dropdown-item>
           <el-dropdown-item @click.native="handleScreen()" divided>
             <template v-if="!isFullScren">系统全屏</template>
             <template v-else>退出全屏</template>
           </el-dropdown-item>
-
-          <el-dropdown-item @click.native="logout" divided>退出系统</el-dropdown-item>
+          <el-dropdown-item @click.native="logout" divided>退出云端</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
 
@@ -68,19 +65,54 @@
         </span>
       </el-dialog>
     </div>
+
+    <el-dialog title="评分" :visible.sync="day" width="40%">
+      <el-form label-width="80px">
+        <el-form-item label="评分">
+          <el-rate v-model="value2" :colors="colors" style="margin-top: 10px;"></el-rate>
+        </el-form-item>
+        <el-form-item label="是否匿名">
+          <el-switch
+            v-model="value"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            style="margin-top: 10px;"
+          ></el-switch>
+        </el-form-item>
+        <el-form-item label="日历">
+          <demo></demo>
+        </el-form-item>
+        <el-form-item label="报表">
+          <tab></tab>
+        </el-form-item>
+      </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button size="mini" type="primary" icon="el-icon-check" @click="dayflase()">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
+
 <script>
+import tab from './tab'
+import demo from './demo'
 import { validatenull } from '@/util/validate'
 import { mapState, mapGetters } from 'vuex'
 import { listenfullscreen } from '@/util/util'
 import topTheme from './top-theme'
 export default {
-  components: { topTheme },
+  components: { topTheme, demo, tab },
+
   name: 'top',
   data() {
     return {
+      value: true,
+      value2: null,
+      colors: ['#99A9BF', 'rgba(12, 178, 219, 0.384)', '#F7BA2A'],
       box: false,
+      day: false,
       form: {
         passwd: ''
       },
@@ -99,6 +131,11 @@ export default {
     ...mapGetters(['isFullScren', 'isCollapse', 'lockPasswd'])
   },
   methods: {
+    dayflase() {
+      this.value = null
+      this.value2 = null
+      this.day = !this.day
+    },
     showCollapse() {
       this.$store.commit('SET_COLLAPSE')
     },
@@ -138,7 +175,7 @@ export default {
     },
     myselfIndex() {
       this.$router.push({
-        name: '首页'
+        name: '云界首页'
       })
     },
     themeTo() {

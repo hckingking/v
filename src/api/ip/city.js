@@ -2,7 +2,7 @@ import request from '@/router/axios'
 
 export function getCityList(query) {
   return request({
-    url: '/admin/c',
+    url: '/ad/c',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function getCityList(query) {
 
 export function getCityObj(query) {
   return request({
-    url: '/admin/c/id',
+    url: '/ad/c/id',
     method: 'get',
     params: query
   })
@@ -18,7 +18,7 @@ export function getCityObj(query) {
 
 export function delCityObj(query) {
   return request({
-    url: '/admin/c/',
+    url: '/ad/c/',
     method: 'delete',
     data: query
   })
@@ -26,7 +26,7 @@ export function delCityObj(query) {
 
 export function postCityObj(query) {
   return request({
-    url: '/admin/c',
+    url: '/ad/c',
     method: 'post',
     data: query
   })
@@ -34,7 +34,7 @@ export function postCityObj(query) {
 
 export function putCityObj(query) {
   return request({
-    url: '/admin/c',
+    url: '/ad/c',
     method: 'put',
     data: query
   })
@@ -42,7 +42,7 @@ export function putCityObj(query) {
 
 export function getCitys() {
   return request({
-    url: '/admin/c/list',
+    url: '/ad/c/list',
     method: 'get'
   })
 }

@@ -26,6 +26,7 @@ import './permission' // 权限
 import './errorLog' // 错误日志
 import router from './router/router'
 import store from './store'
+// avue 不能删
 import AVUE from 'avue-cli/lib/avue.js'
 import {
   loadStyle
@@ -38,6 +39,7 @@ import {
 import * as filters from './filters' // 全局filter
 import './styles/common.scss'
 import './assets/iconfont.css'
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueMoment)
