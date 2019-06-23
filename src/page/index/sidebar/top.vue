@@ -52,7 +52,7 @@
             prop="passwd"
             :rules="[{ required: true, message: '锁屏密码不能为空'}]"
           >
-            <el-input v-model="form.passwd" placeholder="请输入锁屏密码"></el-input>
+            <el-input v-model="form.passwd" placeholder="请输入锁屏密码" @keyup.enter.native="handleSetLock()"></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -81,10 +81,7 @@
         </el-form-item>
         <el-form-item label="日历">
           <demo></demo>
-        </el-form-item>
-        <el-form-item label="报表">
-          <tab></tab>
-        </el-form-item>
+        </el-form-item> 
       </el-form>
 
       <span slot="footer" class="dialog-footer">
@@ -96,15 +93,13 @@
 </template>
 
 <script>
-import tab from './tab'
 import demo from './demo'
 import { validatenull } from '@/util/validate'
 import { mapState, mapGetters } from 'vuex'
 import { listenfullscreen } from '@/util/util'
 import topTheme from './top-theme'
 export default {
-  components: { topTheme, demo, tab },
-
+  components: { topTheme, demo },
   name: 'top',
   data() {
     return {
@@ -115,8 +110,7 @@ export default {
       day: false,
       form: {
         passwd: ''
-      },
-      theme: false
+      }
     }
   },
   filters: {},

@@ -8,7 +8,7 @@ const icon = [
   {
     // 自动维护图标
     // npm run ico
-    aliUrl: "//at.alicdn.com/t/font_1208944_h04h68bw58j.css", // 暂时只支持使用阿里巴巴图标库
+    aliUrl: "//at.alicdn.com/t/font_1208944_p80om9vnucc.css", // 暂时只支持使用阿里巴巴图标库
     dir: "src/assets/" // 公共图标
   }
 ];

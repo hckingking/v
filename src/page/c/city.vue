@@ -2,6 +2,25 @@
   <div>
     <el-row>
       <el-button size="mini" plain title="隐藏与显示" icon="el-icon-share" @click="collapse()" circle></el-button>
+      <el-button size="mini" plain title="报表" icon="el-icon-loading" @click="themeTo()" circle></el-button>
+      <el-button
+        size="mini"
+        plain
+        title="china"
+        icon="god god-china"
+        @click="chinaTo()"
+        circle
+        class="bdStyle"
+      ></el-button>
+      <el-button
+        size="mini"
+        plain
+        title="world"
+        icon="god god-shijie"
+        @click="worldTo()"
+        circle
+        class="bdStyle"
+      ></el-button>
       <el-button
         size="mini"
         type="success"
@@ -19,7 +38,13 @@
         <el-row>
           <el-col :span="3" :offset="0">
             <el-form-item label="名称">
-              <el-input clearable size="mini" v-model="query.name" placeholder="请输入"></el-input>
+              <el-input
+                clearable
+                size="mini"
+                v-model="query.name"
+                placeholder="请输入"
+                @keyup.enter.native="getData()"
+              ></el-input>
             </el-form-item>
           </el-col>
 
@@ -112,7 +137,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page.sync="query.page"
-            :page-sizes="[10,20,50,100, 200, 300, 400,500,1000]"
+            :page-sizes="[5,10,20,50,100, 200, 300, 400,500,1000]"
             :page-size="query.limit"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
@@ -204,9 +229,33 @@
         </template>
       </div>
     </el-dialog>
+
+    <el-dialog title="报表" :visible.sync="theme" width="70%">
+      <div>
+        <el-row>
+          <el-col :span="10" :offset="0">
+            <charts></charts>
+          </el-col>
+          <el-col :span="10" :offset="4">
+            <tab></tab>
+          </el-col>
+        </el-row>
+      </div>
+    </el-dialog>
+    <el-dialog title="china" :visible.sync="chinaDiv" width="60%">
+      <china></china>
+    </el-dialog>
+
+    <el-dialog title="world" :visible.sync="worldDiv" width="60%">
+      <world></world>
+    </el-dialog>
   </div>
 </template>
 <script>
+import tab from './tab'
+import charts from './charts'
+import china from './china'
+import world from './world'
 import {
   getCityList,
   putCityObj,
@@ -220,16 +269,25 @@ import { getToken } from '@/util/auth'
 export default {
   name: 'tree',
   components: {
-    quillEditor
+    quillEditor,
+    charts,
+    china,
+    world,
+    tab
   },
   data() {
     return {
+      theme: false,
+      worldDiv: false,
+      chinaDiv: false,
       cityRules: {
-        name: [{
-          required: true,
-          message: '请输入名称',
-          trigger: 'blur'
-        }],
+        name: [
+          {
+            required: true,
+            message: '请输入名称',
+            trigger: 'blur'
+          }
+        ],
         day: [
           {
             required: true,
@@ -280,7 +338,8 @@ export default {
       query: {
         page: 1,
         limit: 10
-      }
+      },
+      theme: false
     }
   },
   created() {
@@ -433,6 +492,15 @@ export default {
           this.closeDialog()
         })
       })
+    },
+    themeTo() {
+      this.theme = !this.theme
+    },
+    chinaTo() {
+      this.chinaDiv = !this.chinaDiv
+    },
+    worldTo() {
+      this.worldDiv = !this.worldDiv
     },
     handleCurrentChange(val) {
       this.query.page = val

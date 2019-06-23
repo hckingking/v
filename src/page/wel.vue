@@ -18,8 +18,7 @@
 <template>
   <div class="pull-chheight wel-contailer">
     <div class="banner-text">
-       
-      <span align="center">
+      <div>
         God
         <el-collapse v-model="activeNames">
           <el-collapse-item title="项目官网" name="1">
@@ -74,6 +73,10 @@
               <i class="god god-china"></i>
 
               <i class="god god-ziyuan"></i>
+
+              <i class="god god-icon-test1"></i>
+              <i class="god god-icon-46"></i>
+              <i class="god god-iconfontxingxing"></i>
             </div>
           </el-collapse-item>
           <el-collapse-item title="开发文档" name="2">
@@ -112,7 +115,7 @@
             </div>
           </el-collapse-item>
         </el-collapse>
-      </span>
+      </div>
     </div>
   </div>
 </template>

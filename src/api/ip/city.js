@@ -46,3 +46,10 @@ export function getCitys() {
     method: 'get'
   })
 }
+
+export function getPieTabs() {
+  return request({
+    url: '/ad/c/pie',
+    method: 'get'
+  })
+}
