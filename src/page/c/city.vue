@@ -6,6 +6,15 @@
       <el-button
         size="mini"
         plain
+        title="maps"
+        icon="god god-china"
+        @click="mapsTo()"
+        circle
+        class="bdStyle"
+      ></el-button>
+      <el-button
+        size="mini"
+        plain
         title="china"
         icon="god god-china"
         @click="chinaTo()"
@@ -230,7 +239,7 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="报表" :visible.sync="theme" width="70%">
+    <el-dialog title="报表" :visible.sync="themes" width="70%">
       <div>
         <el-row>
           <el-col :span="10" :offset="0">
@@ -249,9 +258,14 @@
     <el-dialog title="world" :visible.sync="worldDiv" width="60%">
       <world></world>
     </el-dialog>
+
+    <el-dialog title="maps" :visible.sync="mapsDiv" width="50%">
+      <maps></maps>
+    </el-dialog>
   </div>
 </template>
 <script>
+import maps from './maps'
 import tab from './tab'
 import charts from './charts'
 import china from './china'
@@ -273,11 +287,13 @@ export default {
     charts,
     china,
     world,
-    tab
+    tab,
+    maps
   },
   data() {
     return {
-      theme: false,
+      mapsDiv: false,
+      themes: false,
       worldDiv: false,
       chinaDiv: false,
       cityRules: {
@@ -338,8 +354,7 @@ export default {
       query: {
         page: 1,
         limit: 10
-      },
-      theme: false
+      }
     }
   },
   created() {
@@ -494,13 +509,16 @@ export default {
       })
     },
     themeTo() {
-      this.theme = !this.theme
+      this.themes = !this.themes
     },
     chinaTo() {
       this.chinaDiv = !this.chinaDiv
     },
     worldTo() {
       this.worldDiv = !this.worldDiv
+    },
+    mapsTo() {
+      this.mapsDiv = !this.mapsDiv
     },
     handleCurrentChange(val) {
       this.query.page = val

@@ -108,6 +108,7 @@ export default {
       colors: ['#99A9BF', 'rgba(12, 178, 219, 0.384)', '#F7BA2A'],
       box: false,
       day: false,
+      theme: false,
       form: {
         passwd: ''
       }
