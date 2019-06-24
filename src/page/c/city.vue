@@ -1,35 +1,18 @@
 <template>
   <div>
     <el-row>
-      <el-button size="mini" plain title="隐藏与显示" icon="el-icon-share" @click="collapse()" circle></el-button>
-      <el-button size="mini" plain title="报表" icon="el-icon-loading" @click="themeTo()" circle></el-button>
+      <el-button size="mini" plain title="隐藏与显示"  type="info" icon="el-icon-share" @click="collapse()" circle></el-button>
+      <el-button size="mini" plain title="报表"  type="text" icon="el-icon-loading" @click="themeTo()" circle></el-button>
       <el-button
         size="mini"
         plain
         title="maps"
-        icon="god god-china"
+        icon="god god-iconfontxingxing"
         @click="mapsTo()"
         circle
-        class="bdStyle"
       ></el-button>
-      <el-button
-        size="mini"
-        plain
-        title="china"
-        icon="god god-china"
-        @click="chinaTo()"
-        circle
-        class="bdStyle"
-      ></el-button>
-      <el-button
-        size="mini"
-        plain
-        title="world"
-        icon="god god-shijie"
-        @click="worldTo()"
-        circle
-        class="bdStyle"
-      ></el-button>
+      <el-button size="mini" plain title="china" icon="god god-china" @click="chinaTo()" circle></el-button>
+      <el-button size="mini" plain title="world" icon="god god-shijie" @click="worldTo()" circle></el-button>
       <el-button
         size="mini"
         type="success"
@@ -38,6 +21,7 @@
         icon="el-icon-circle-plus-outline"
         @click="openPostDialog()"
         circle
+        
       ></el-button>
       <el-button size="mini" plain title="查询" icon="el-icon-refresh" circle @click="getData()"></el-button>
     </el-row>
@@ -113,6 +97,7 @@
               <el-button
                 size="mini"
                 plain
+                 type="primary"
                 title="查看"
                 icon="el-icon-search"
                 circle
@@ -133,7 +118,7 @@
                 size="mini"
                 plain
                 title="编辑"
-                type="primary"
+                type="warning"
                 icon="el-icon-edit"
                 circle
                 @click="openPutDialog(scope.row)"
@@ -265,11 +250,11 @@
   </div>
 </template>
 <script>
-import maps from './maps'
-import tab from './tab'
-import charts from './charts'
-import china from './china'
-import world from './world'
+import maps from './tabss/maps'
+import tab from './tabss/tab'
+import charts from './tabss/charts'
+import china from './tabss/china'
+import world from './tabss/world'
 import {
   getCityList,
   putCityObj,

@@ -18,6 +18,7 @@
   font-size: 26px!important;
   color: rgba(219, 12, 64, 0.384)!important;
 }
+
  .pagination-container {
    text-align: right;
    padding-top: 10px;
@@ -26,10 +27,7 @@
 .el-table .cell {
  color: gray!important;
 }
-.el-dialog__title {
-  font-size: 18px
-}
 
-.bdStyle{
-  border: 1px solid #fff;
+.el-button{
+  border: 1px solid #fff!important;
 }

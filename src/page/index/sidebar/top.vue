@@ -174,7 +174,7 @@ export default {
       })
     },
     themeTo() {
-      this.theme = true
+      this.theme = !this.theme
     },
     handleSetLock() {
       this.$refs['form'].validate(valid => {
