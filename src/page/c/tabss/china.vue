@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     chinaConfigure() {
-      console.log(this.userJson)
       const myChart = echarts.init(this.$refs.myEchart) // 这里是为了获得容器所在位置
       window.onresize = myChart.resize
       myChart.setOption({
@@ -74,7 +73,7 @@ export default {
             coordinateSystem: 'geo' // 对应上方配置
           },
           {
-            name: '启动次数', // 浮动框的标题
+            name: '启动', // 浮动框的标题
             type: 'map',
             geoIndex: 0,
             data: [

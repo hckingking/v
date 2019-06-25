@@ -179,7 +179,7 @@
             :on-success="uploadSuccess"
             :file-list="enclosureList"
           >
-            <el-button size="mini">选取</el-button>
+            <el-button size="mini" type="success" plain>选取</el-button>
           </el-upload>
         </el-form-item>
 
@@ -216,7 +216,7 @@
         </el-form-item>
       </el-form>
       <div class="dialog-footer" align="right" style="margin-top:30px">
-        <el-button size="mini" plain @click="closeDialog()">取 消</el-button>
+        <el-button size="mini" type="success" plain @click="closeDialog()">取 消</el-button>
         <template v-if="!putform.red">
           <el-button v-if="!putform.adds" size="mini" type="primary" plain @click="goPutObj()">确 定</el-button>
           <el-button v-else size="mini" type="primary" plain @click="postCity()">确 定</el-button>
