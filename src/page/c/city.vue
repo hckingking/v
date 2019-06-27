@@ -373,7 +373,7 @@ export default {
     getData() {
       getCityList(this.query).then(response => {
         this.cityList = response.data.data.records
-        this.total = response.data.total
+        this.total = response.data.data.total
         this.loading = false
       })
     },
