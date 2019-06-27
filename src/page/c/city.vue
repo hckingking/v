@@ -13,7 +13,7 @@
         ></el-button>
       </el-badge>
 
-      <el-button size="mini" title="验证" icon="god god-dingding" @click="isGodRole()" circle></el-button>
+      <el-button size="mini" title="验证身份" icon="god god-dingding" @click="isGodRole()" circle></el-button>
 
       <el-button
         size="mini"
