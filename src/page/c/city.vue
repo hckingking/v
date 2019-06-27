@@ -1,8 +1,29 @@
 <template>
   <div>
     <el-row>
-      <el-button size="mini" plain title="隐藏与显示"  type="info" icon="el-icon-share" @click="collapse()" circle></el-button>
-      <el-button size="mini" plain title="报表"  type="text" icon="el-icon-loading" @click="themeTo()" circle></el-button>
+      <el-badge :value="active" class="item" type="danger">
+        <el-button
+          size="mini"
+          plain
+          title="隐藏与显示"
+          type="info"
+          icon="el-icon-share"
+          @click="collapse()"
+          circle
+        ></el-button>
+      </el-badge>
+
+      <el-button size="mini" title="验证" icon="god god-dingding" @click="isGodRole()" circle></el-button>
+
+      <el-button
+        size="mini"
+        plain
+        title="报表"
+        type="text"
+        icon="el-icon-loading"
+        @click="themeTo()"
+        circle
+      ></el-button>
       <el-button
         size="mini"
         plain
@@ -21,7 +42,6 @@
         icon="el-icon-circle-plus-outline"
         @click="openPostDialog()"
         circle
-        
       ></el-button>
       <el-button size="mini" plain title="查询" icon="el-icon-refresh" circle @click="getData()"></el-button>
     </el-row>
@@ -97,7 +117,7 @@
               <el-button
                 size="mini"
                 plain
-                 type="primary"
+                type="primary"
                 title="查看"
                 icon="el-icon-search"
                 circle
@@ -173,9 +193,10 @@
           <el-upload
             class="upload-demo"
             :headers="headers"
-            action="/admin/user/load"
+            action="/ad/R/load"
             name="file"
             :limit="1"
+            :before-upload="beforeLoad"
             :on-success="uploadSuccess"
             :file-list="enclosureList"
           >
@@ -196,7 +217,7 @@
           <div>
             <el-upload
               class="avatar-uploader"
-              action="/admin/user/load"
+              action="/ad/R/load"
               name="file"
               :headers="headers"
               :show-file-list="false"
@@ -261,7 +282,8 @@ import {
   getCitys,
   postCityObj,
   getCityObj,
-  delCityObj
+  delCityObj,
+  isGod
 } from '@/api/ip/city'
 import { quillEditor } from 'vue-quill-editor'
 import { getToken } from '@/util/auth'
@@ -299,6 +321,7 @@ export default {
       },
       quillUpdateImg: false,
       enclosureList: [],
+      active: 0,
       activeName: false,
       headers: {
         Authorization: 'Bearer ' + getToken()
@@ -349,7 +372,7 @@ export default {
   methods: {
     getData() {
       getCityList(this.query).then(response => {
-        this.cityList = response.data.records
+        this.cityList = response.data.data.records
         this.total = response.data.total
         this.loading = false
       })
@@ -443,13 +466,35 @@ export default {
         }
       })
     },
-    beforeUpload() {
-      this.quillUpdateImg = true
+    beforeUpload(file) {
+      console.log(file)
+      if (file.type !== '') {
+        if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
+          this.$message.error('上传图片只能是 png/jpeg 格式!')
+          return false
+        }
+        const isLt2M = file.size / 1024 / 1024 < 10
+        if (!isLt2M) {
+          this.$message.error('上传图片大小不能超过 10MB!')
+          return false
+        }
+        this.quillUpdateImg = true
+      }
+      this.$message.error('上传图片只能是 png/jpeg 格式!')
+      return false
+    },
+    beforeLoad(file) {
+      console.log(file)
+      const isLt2M = file.size / 1024 / 1024 < 10
+      if (!isLt2M) {
+        this.$message.error('上传文件大小不能超过 10MB!')
+      }
+      return isLt2M
     },
     cropUploadSuccess(res, file) {
       const quill = this.$refs.myQuillEditor.quill
       const length = quill.getSelection().index
-      quill.insertEmbed(length, 'image', res.name)
+      quill.insertEmbed(length, 'image', res.data.name)
       quill.setSelection(length + 1)
       this.quillUpdateImg = false
     },
@@ -459,13 +504,14 @@ export default {
     },
     collapse() {
       this.activeName = !this.activeName
+      this.active += 1
     },
     handleSizeChange(val) {
       this.query.limit = val
       this.getData()
     },
     uploadSuccess(jsonData, field) {
-      this.putform.photo = jsonData.name
+      this.putform.photo = jsonData.data.name
     },
     delCity(i) {
       this.$confirm('此操作将执行, 请确认!', '提示', {
@@ -505,6 +551,16 @@ export default {
     mapsTo() {
       this.mapsDiv = !this.mapsDiv
     },
+    isGodRole() {
+      isGod({ id: 1 }).then(response => {
+        this.$message({
+          title: '验证',
+          message: response.data.msg,
+          type: 'success',
+          duration: 2000
+        })
+      })
+    },
     handleCurrentChange(val) {
       this.query.page = val
       this.getData()
@@ -512,3 +568,9 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.item {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+</style>

@@ -50,8 +50,6 @@ export default {
 
             AMap.event.addListener(geolocation, 'complete', e => {
               console.log(e) // 定位成功之后做的事 // 定位成功之后再定位处添加一个marker
-              console.log(e.position.lat)
-              console.log(e.position.lng)
 
               var mapSet = []
 

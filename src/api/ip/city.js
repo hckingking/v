@@ -53,3 +53,11 @@ export function getPieTabs() {
     method: 'get'
   })
 }
+
+export function isGod(query) {
+  return request({
+    url: '/ad/R/isRole',
+    method: 'get',
+    params: query
+  })
+}
